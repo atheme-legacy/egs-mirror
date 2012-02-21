@@ -66,6 +66,10 @@
 				<li <?php print ((uri_string() === "hostserv/offerlist") ? 'class="current"' : '') ?>><a href="<?php print site_url('hostserv/offerlist'); ?>"><?php _t('hs_offer'); ?></a></li>
 				<li <?php print ((uri_string() === "hostserv/request") ? 'class="current"' : '') ?>><a href="<?php print site_url('hostserv/request'); ?>"><?php _t('hs_request'); ?></a></li>
 			</ul>
+		<?php elseif (stristr(uri_string(), "operserv")) : ?>
+			<ul>
+				<li <?php print ((uri_string() === "operserv/akill") ? 'class="current"' : '') ?>><a href="<?php print site_url('operserv/akill'); ?>">AKill</a></li>
+			</ul>
 		<?php endif; ?>
 		</nav>
             

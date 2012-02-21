@@ -159,7 +159,7 @@ class Memoserv extends CI_Controller {
 	/**
 	 * Delmemo Page
 	 * Page will allow users to delete specified memo's by ID
-	 *
+	 * 
 	 */
 	public function delmemo($memoid = FALSE)
 	{

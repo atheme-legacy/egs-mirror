@@ -69,6 +69,37 @@ class Fout {
 		}		
 	}
 	// --------------------------------------------------------
+
+
+	/**
+	 * as_akills()
+	 * functoin formats the output as if it were a lit of akills being pushed to an oper
+	 *
+	 * @param array $akills_array 		- array of akills
+	 */
+	public function as_akills($akills_array)
+	{
+		$akill_data = array();
+
+		// remove first and last array entries
+		array_pop($akills_array);
+		array_shift($akills_array);
+
+		foreach ($akills_array as $akill)
+		{
+			preg_match('/([0-9]{1,9}): (.*) - (.*) - (.*) - (.*)/sm', $akill, $parts);
+			$tmp['id'] 			= $parts[1];
+			$tmp['nick_host'] 	= $parts[2];
+			$tmp['added_by']	= $parts[3];
+			$tmp['expires']		= $parts[4];
+			$tmp['reason']		= $parts[5];
+			
+			array_push($akill_data, $tmp); 
+		}
+
+		return $akill_data;
+	}
+	// --------------------------------------------------------
 	
 	
 	/**
@@ -76,7 +107,6 @@ class Fout {
 	 * function formats the servers response as if they were memos
 	 *
 	 * @param array $memos_array	- array of memos
-	 * 
 	 */
 	public function as_memos($memos_array)
 	{

@@ -12,6 +12,18 @@ $('document').ready(function() {
 	$('#flagstoggle').click(function(){
 		$('#flagstable').toggle();
 	});
+
+	/*!
+	 * thing to make akill timed section appear
+	 */
+	$('section#timed').hide();
+	$('select#akill_type').change(function() {
+		if ($(this).val() == "!T") {
+			$('section#timed').slideDown();
+		} else {
+			$('section#timed').slideUp();
+		}
+	});
 	
 	/*!
 	 * navigation tabs
