@@ -69,6 +69,8 @@
 		<?php elseif (stristr(uri_string(), "operserv")) : ?>
 			<ul>
 				<li <?php print ((uri_string() === "operserv/akill") ? 'class="current"' : '') ?>><a href="<?php print site_url('operserv/akill'); ?>">AKill</a></li>
+				<li><a href="#">Soper</a></li>
+				<li><a href="#">Modules</a></li>
 			</ul>
 		<?php endif; ?>
 		</nav>

@@ -61,14 +61,17 @@ class Operserv extends CI_Controller {
 	
 	public function akill()
 	{
+		// page data
 		$page_data = array();
 
+		// form validation rules for adding an akill
 		if ($this->input->post('add_akill'))
 		{
 			$this->form_validation->set_rules('nick_host', 'Nickname or Hostmask', 'requried');
 			$this->form_validation->set_rules('akill_type', 'Type of AKill', 'required');
 		}
 
+		// form validation rules for deleting an akill
 		if ($this->input->post('del_akill'))
 		{
 			$this->form_validation->set_rules('akill_id', 'AKill ID', 'required');
@@ -94,6 +97,7 @@ class Operserv extends CI_Controller {
 			$page_data['msg'] = $callback['data'];
 		}
 
+		// get currently akill list
 		$callback = $this->operserv_model->akill_list();
 
 		// auth check

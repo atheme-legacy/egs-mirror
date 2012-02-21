@@ -116,12 +116,6 @@ class Atheme {
 		$request = array($auth, $nick, "0.0.0.0", $command);
 		foreach ($parameters as $param)
 			array_push($request, $param);
-		
-		if ($debug)
-		{
-			print "<pre>" . print_r($request, TRUE) .  "</pre>";
-			die();
-		}
 
 		$this->ci->xmlrpc->request($request);
 		
