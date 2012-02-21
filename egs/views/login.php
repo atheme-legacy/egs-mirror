@@ -6,7 +6,7 @@
     <meta name="robots" content="follow, all" />
     <meta name="language" content="en" />
     
-    <title>New EGs</title>
+    <title><?php print $this->config->item('site_name'); ?> - EGs Web Panel</title>
     
     <!-- Icon -->
     <link rel="Shortcut Icon" href="<?php print base_url(); ?>favicon.ico" type="image/x-icon" />
