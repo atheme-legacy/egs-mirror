@@ -199,23 +199,69 @@ class Operserv extends CI_Controller {
 			redirect('main/logout');
 
 		// clean modules list for options list
-		$modules = $this->fout->as_array($callback['data']);
-
-		array_shift($modules);
-		array_pop($modules);
-
-		$page_data['modules'] = array();
-		foreach ($modules as $mod)
-		{
-			preg_match('/: (.*) \[.*\]/m', $mod, $parts);
-			array_push($page_data['modules'], $parts[1]);
-		}
+		$page_data['modules'] = $this->fout->as_modules($this->fout->as_array($callback['data']));
 
 		// load the main view
 		$this->load->view('operserv/modules', $page_data);
 	}
 	// --------------------------------------------------------
 	
+
+	/**
+	 * Soper Page
+	 * Page deals with all opserserv soper stuff
+	 */
+	public function soper()
+	{
+		// page data
+		$page_data = array();
+
+		// validation rules for adding a soper
+		if ($this->input->post('add_soper'))
+		{
+			$this->form_validation->set_rules('soper_name', 'Soper Name', 'required');
+			$this->form_validation->set_rules('soper_class', 'Soper Class', 'required');
+		}
+
+		// validation rules for removing soper
+		if ($this->input->post('del_soper'))
+			$this->form_validation->set_rules('soper_name', 'Soper Name', 'required');
+
+		// did the user submit
+		if ($this->form_validation->run())
+		{
+			// are we adding a soper?
+			if ($this->input->post('add_soper'))
+				$callback = $this->operserv_model->soper_add($this->input->post('soper_name'), $this->input->post('soper_class'));
+
+			// are we removing a soper
+			if ($this->input->post('del_soper'))
+				$callback = $this->operserv_model->soper_del($this->input->post('soper_name'));
+
+			// auth check
+			if (!$callback['response'] && $callback['data'] == $this->lang->line('error_invalid_authcookie'))
+				redirect('main/logout');
+
+			// atheme response
+			$page_data['success'] =  $page_data['info'] = $callback['response'];
+			$page_data['msg'] = $callback['data'];
+		}
+
+		// get soper list
+		$callback = $this->operserv_model->soper_list();
+
+		// auth check
+		if (!$callback['response'] && $callback['data'] == $this->lang->line('error_invalid_authcookie'))
+			redirect('main/logout');
+
+		// clean modules list for options list
+		$page_data['sopers'] = $this->fout->as_sopers( $this->fout->as_array($callback['data']) );
+
+		// load view
+		$this->load->view('operserv/soper', $page_data);
+	}
+	// --------------------------------------------------------
+
 
 	/**
 	 * Rehash Page 
@@ -226,19 +272,25 @@ class Operserv extends CI_Controller {
 		// page data
 		$page_data = array();
 
-		//$callback = $this->operserv_model->rehash();
-		$callback = $this->operserv_model->specs();
+		// validation rules
+		$this->form_validation->set_rules('rehash_check', 'Rehash Confirm', 'required|callback__rehash_confirm');
 
-		// auth check
-		if (!$callback['response'] && $callback['data'] == $this->lang->line('error_invalid_authcookie'))
-			redirect('main/logout');
+		if ($this->form_validation->run())
+		{
+			// issue rehash command
+			$callback = $this->operserv_model->rehash();
 
-		// atheme response
-		$page_data['success'] =  $page_data['info'] = $callback['response'];
-		$page_data['msg'] = $callback['data'];
+			// auth check
+			if (!$callback['response'] && $callback['data'] == $this->lang->line('error_invalid_authcookie'))
+				redirect('main/logout');
+
+			// atheme response
+			$page_data['success'] =  $page_data['info'] = $callback['response'];
+			$page_data['msg'] = $callback['data'];
+		}
 
 		// load the main view
-		$this->load->view('operserv/modules', $page_data);
+		$this->load->view('operserv/rehash', $page_data);
 	}
 	// --------------------------------------------------------
 
@@ -247,6 +299,21 @@ class Operserv extends CI_Controller {
 	// CALLBACK FUNCTIONS
 	//========================================================
 	
+
+	/**
+	 * _rehash_confirm()
+	 * function will make sure the user enters "YES" into the confirm box
+	 * 
+	 * @param string $str 	- the string to confirm as a "YES"
+	 */
+	public function _rehash_confirm($str)
+	{
+		if ($str === "YES")
+			return TRUE;
+
+		$this->form_validation->set_message('_rehash_confirm', 'You must confirm a rehash by entering "YES" into the %s field.');
+		return FALSE;
+	}
 	
 	//========================================================
 	// PRIVATE FUNCTIONS

@@ -175,6 +175,27 @@ class Main extends CI_Controller {
 	    $this->load->view('register', $page_data);
 	}
 	// --------------------------------------------------------
+
+
+	public function hash($password = FALSE)
+	{
+		if (!$password)
+			return;
+
+		$md5 = md5($password);
+		print "<pre>------------------------\n";
+		print "MD5: $md5\n";
+		print "Atheme.conf: " . '$rawmd5$' . $md5 . "\n";
+		print "------------------------</pre>";
+
+		/*
+		$md5 = md5($password, TRUE);
+		$fp = fopen("/home/ircd/www/egs/controllers/dump.bin", "wb");
+		fwrite($fp, $md5);
+		fclose($fp);
+		*/
+
+	}
 	
 	
 	//========================================================

@@ -237,7 +237,10 @@ class Operserv_model extends CI_Model {
 	// --------------------------------------------------------
 
 
-
+	/**
+	 * module_list()
+	 * function will list all currently active modules
+	 */
 	public function module_list()
 	{
 		$ret_array = array();
@@ -334,6 +337,143 @@ class Operserv_model extends CI_Model {
 
 
 	/**
+	 * soper_list()
+	 * function will list all current soper access
+	 */
+	public function soper_list()
+	{
+		$ret_array = array();
+
+		$cmd = $this->atheme->atheme_command($this->session->userdata('nick'), $this->session->userdata('auth'), $this->config->item('atheme_operserv'),
+			array(
+				"SOPER",
+				"LIST"
+			)
+		);
+
+		if ($cmd)
+		{
+			$ret_array['response'] = TRUE;
+			$ret_array['data'] = $this->xmlrpc->display_response();
+		}
+		else
+		{
+			$ret_array['response'] = FALSE;
+			$ret_array['data'] = $this->xmlrpc->display_error();
+		}
+		
+		return $ret_array;
+	}
+	// --------------------------------------------------------
+
+
+	/**
+	 * soper_add()
+	 * function will add a user to the soper with the passed class access
+	 *
+	 * @param string $soper 	- soper (nickname) to add
+	 * @param string $sclass 	- soper class to add the above nickname too
+	 */
+	public function soper_add($soper, $sclass)
+	{
+		$ret_array = array();
+
+		$cmd = $this->atheme->atheme_command($this->session->userdata('nick'), $this->session->userdata('auth'), $this->config->item('atheme_operserv'),
+			array(
+				"SOPER",
+				"ADD",
+				$soper,
+				$sclass
+			)
+		);
+
+		if ($cmd)
+		{
+			$ret_array['response'] = TRUE;
+			$ret_array['data'] = $this->xmlrpc->display_response();
+		}
+		else
+		{
+			$ret_array['response'] = FALSE;
+			$ret_array['data'] = $this->xmlrpc->display_error();
+		}
+		
+		return $ret_array;
+	}
+	// --------------------------------------------------------
+
+
+	/**
+	 * soper_del()
+	 * function will remove acces for a passes soper
+	 *
+	 * @param string $soper 	- soper name (nickname) of the user you want to remove services access for
+	 */
+	public function soper_del($soper)
+	{
+		$ret_array = array();
+
+		$cmd = $this->atheme->atheme_command($this->session->userdata('nick'), $this->session->userdata('auth'), $this->config->item('atheme_operserv'),
+			array(
+				"SOPER",
+				"DEL",
+				$soper
+			)
+		);
+
+		if ($cmd)
+		{
+			$ret_array['response'] = TRUE;
+			$ret_array['data'] = $this->xmlrpc->display_response();
+		}
+		else
+		{
+			$ret_array['response'] = FALSE;
+			$ret_array['data'] = $this->xmlrpc->display_error();
+		}
+		
+		return $ret_array;
+	}
+	// --------------------------------------------------------
+
+
+	/**
+	 * soper_setpass()
+	 * function will allow the user to change the password for the named soper
+	 *
+	 * @param string $soper 	- soper that you want to set the password for
+	 * @param string $passhash 	- hash for the password (generated useing genpasswordhash)
+	 */
+	public function soper_setpass($soper, $passhash)
+	{
+		$ret_array = array();
+
+		$cmd = $this->atheme->atheme_command($this->session->userdata('nick'), $this->session->userdata('auth'), $this->config->item('atheme_operserv'),
+			array(
+				"SOPER",
+				"SETPASS",
+				$soper,
+				$passhash
+			)
+		);
+
+		if ($cmd)
+		{
+			$ret_array['response'] = TRUE;
+			$ret_array['data'] = $this->xmlrpc->display_response();
+		}
+		else
+		{
+			$ret_array['response'] = FALSE;
+			$ret_array['data'] = $this->xmlrpc->display_error();
+		}
+		
+		return $ret_array;
+	}
+	// --------------------------------------------------------
+
+
+	/**
 	 * clear_channel()
 	 * this function allows users to issue the CLEARNCHAN command on a given channel with
 	 * the passed given parameters.
@@ -372,6 +512,10 @@ class Operserv_model extends CI_Model {
 	// --------------------------------------------------------
 
 
+	/**
+	 * rehash()
+	 * function will rehash anope upon request
+	 */
 	public function rehash()
 	{
 		$ret_array = array();
@@ -425,6 +569,7 @@ class Operserv_model extends CI_Model {
 		
 		return $ret_array;
 	}
+	// --------------------------------------------------------
 	
 	
 	//========================================================

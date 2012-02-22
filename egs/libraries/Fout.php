@@ -100,6 +100,56 @@ class Fout {
 		return $akill_data;
 	}
 	// --------------------------------------------------------
+
+
+	/**
+	 * as_modules()
+	 * formats the output as a list of modules.
+	 * 
+	 * @param array $modules_array 	- xml data array of modules returned via MODLIST
+	 */
+	public function as_modules($modules_array)
+	{
+		// remove first and last array lines
+		array_shift($modules_array);
+		array_pop($modules_array);
+
+		// create our tidy array
+		$modules = array();
+		
+		// loop and clean, pushing onto $modules
+		foreach ($modules_array as $mod)
+		{
+			preg_match('/: (.*) \[.*\]/m', $mod, $parts);
+			array_push($modules, $parts[1]);
+		}
+
+		return $modules;
+	}
+	// --------------------------------------------------------
+
+
+	/**
+	 * as_sopers()
+	 * function will format the input array as if it was a soper list via SOPER LIST
+	 */
+	public function as_sopers($sopers_array)
+	{
+		// drop first two and last two
+		array_shift($sopers_array);
+		array_shift($sopers_array);
+		array_pop($sopers_array);
+		array_pop($sopers_array);
+
+		// our clean array for output
+		$sopers = array();
+
+		foreach ($sopers_array as $sop)
+			array_push($sopers, array_merge( array_filter( explode(" ", $sop) ) ));
+
+		return $sopers;
+	}
+	// --------------------------------------------------------
 	
 	
 	/**
