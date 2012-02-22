@@ -186,6 +186,169 @@ class Operserv_model extends CI_Model {
 	}
 	// --------------------------------------------------------
 	
+
+	/**
+	 * send_global()
+	 * function will send out a global message to all users on the network. mind the spam!
+	 *
+	 * @param string $global_msg 	- the global message you wish to send.
+	 */
+	public function send_global($global_msg)
+	{
+		$ret_array = array();
+
+		// build the global lines
+		$cmd = $this->atheme->atheme_command($this->session->userdata('nick'), $this->session->userdata('auth'), $this->config->item('atheme_operserv'),
+			array(
+				"GLOBAL",
+				$global_msg
+			)
+		);
+
+		// send the global
+		$cmd = $this->atheme->atheme_command($this->session->userdata('nick'), $this->session->userdata('auth'), $this->config->item('atheme_operserv'),
+			array(
+				"GLOBAL",
+				"SEND"
+			)
+		);
+
+		// clear the global
+		$cmd1 = $this->atheme->atheme_command($this->session->userdata('nick'), $this->session->userdata('auth'), $this->config->item('atheme_operserv'),
+			array(
+				"GLOBAL",
+				"CLEAR"
+			)
+		);
+
+		if ($cmd)
+		{
+			$ret_array['response'] = TRUE;
+			$ret_array['data'] = $this->xmlrpc->display_response();
+		}
+		else
+		{
+			$ret_array['response'] = FALSE;
+			$ret_array['data'] = $this->xmlrpc->display_error();
+		}
+		
+		return $ret_array;
+	}
+	// --------------------------------------------------------
+
+
+
+	public function module_list()
+	{
+		$ret_array = array();
+
+		// build the global lines
+		$cmd = $this->atheme->atheme_command($this->session->userdata('nick'), $this->session->userdata('auth'), $this->config->item('atheme_operserv'),
+			array(
+				"MODLIST"
+			)
+		);
+
+		if ($cmd)
+		{
+			$ret_array['response'] = TRUE;
+			$ret_array['data'] = $this->xmlrpc->display_response();
+		}
+		else
+		{
+			$ret_array['response'] = FALSE;
+			$ret_array['data'] = $this->xmlrpc->display_error();
+		}
+		
+		return $ret_array;
+	}
+	// --------------------------------------------------------
+
+
+	
+	public function clear_channel($clear_action, $clear_channel, $clear_reason = FALSE)
+	{
+		$ret_array = array();
+
+		$cmd = $this->atheme->atheme_command($this->session->userdata('nick'), $this->session->userdata('auth'), $this->config->item('atheme_operserv'),
+			array(
+				"CLEARCHAN",
+				$clear_action,
+				$clear_channel,
+				($clear_reason) ? $clear_reason : 'No reason given.'
+			)
+		);
+
+		if ($cmd)
+		{
+			$ret_array['response'] = TRUE;
+			$ret_array['data'] = $this->xmlrpc->display_response();
+		}
+		else
+		{
+			$ret_array['response'] = FALSE;
+			$ret_array['data'] = $this->xmlrpc->display_error();
+		}
+		
+		return $ret_array;
+
+	}
+	// --------------------------------------------------------
+
+
+	public function rehash()
+	{
+		$ret_array = array();
+
+		$cmd = $this->atheme->atheme_command($this->session->userdata('nick'), $this->session->userdata('auth'), $this->config->item('atheme_operserv'),
+			array(
+				"REHASH"
+			)
+		);
+
+		if ($cmd)
+		{
+			$ret_array['response'] = TRUE;
+			$ret_array['data'] = $this->xmlrpc->display_response();
+		}
+		else
+		{
+			$ret_array['response'] = FALSE;
+			$ret_array['data'] = $this->xmlrpc->display_error();
+		}
+		
+		return $ret_array;
+	}
+	// --------------------------------------------------------
+
+
+	/**
+	 * specs()
+	 * function will run a specs command on the current user
+	 */
+	public function specs()
+	{
+		$ret_array = array();
+
+		$cmd = $this->atheme->atheme_command($this->session->userdata('nick'), $this->session->userdata('auth'), $this->config->item('atheme_operserv'),
+			array(
+				"SPECS"
+			)
+		);
+
+		if ($cmd)
+		{
+			$ret_array['response'] = TRUE;
+			$ret_array['data'] = $this->xmlrpc->display_response();
+		}
+		else
+		{
+			$ret_array['response'] = FALSE;
+			$ret_array['data'] = $this->xmlrpc->display_error();
+		}
+		
+		return $ret_array;
+	}
 	
 	
 	//========================================================

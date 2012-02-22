@@ -32,7 +32,7 @@
                 <?php endif; ?>
 
                 <?php if ($this->config->item('atheme_operserv') && $this->operserv_model->check_access()) : ?>
-                	<li><a href="<?php print site_url('operserv'); ?>"><span class="icon modal"></span>Operserv</a></li>
+                	<li <?php print ((stristr(uri_string(), "operserv")) ? 'class="current"' : '') ?>><a href="<?php print site_url('operserv'); ?>"><span class="icon modal"></span>Operserv</a></li>
                 <?php endif; ?>
 			</ul>
 		</nav>
@@ -70,7 +70,7 @@
 			<ul>
 				<li <?php print ((uri_string() === "operserv/akill") ? 'class="current"' : '') ?>><a href="<?php print site_url('operserv/akill'); ?>">AKill</a></li>
 				<li><a href="#">Soper</a></li>
-				<li><a href="#">Modules</a></li>
+				<li <?php print ((uri_string() === "operserv/modules") ? 'class="current"' : '') ?>><a href="<?php print site_url('operserv/modules'); ?>">Modules</a></li>
 			</ul>
 		<?php endif; ?>
 		</nav>
