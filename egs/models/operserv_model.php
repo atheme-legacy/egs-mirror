@@ -265,7 +265,83 @@ class Operserv_model extends CI_Model {
 	// --------------------------------------------------------
 
 
-	
+	/**
+	 * module_unload()
+	 * function will attempt to unload a currently loaded atheme module from the server
+	 *
+	 * @param string $module_name 		- path and name of the module you want to unload
+	 */
+	public function module_unload($module_name)
+	{
+		$ret_array = array();
+
+		// build the global lines
+		$cmd = $this->atheme->atheme_command($this->session->userdata('nick'), $this->session->userdata('auth'), $this->config->item('atheme_operserv'),
+			array(
+				"MODUNLOAD",
+				$module_name
+			)
+		);
+
+		if ($cmd)
+		{
+			$ret_array['response'] = TRUE;
+			$ret_array['data'] = $this->xmlrpc->display_response();
+		}
+		else
+		{
+			$ret_array['response'] = FALSE;
+			$ret_array['data'] = $this->xmlrpc->display_error();
+		}
+		
+		return $ret_array;
+	}
+	// --------------------------------------------------------
+
+
+	/**
+	 * module_load()
+	 * function allows users to load a module into atheme via the web panel.
+	 *
+	 * @param string $module_name 	- the path/and/name of the module you wish to load into athtem
+	 */
+	public function module_load($module_name)
+	{
+		$ret_array = array();
+
+		// build the global lines
+		$cmd = $this->atheme->atheme_command($this->session->userdata('nick'), $this->session->userdata('auth'), $this->config->item('atheme_operserv'),
+			array(
+				"MODLOAD",
+				$module_name
+			)
+		);
+
+		if ($cmd)
+		{
+			$ret_array['response'] = TRUE;
+			$ret_array['data'] = $this->xmlrpc->display_response();
+		}
+		else
+		{
+			$ret_array['response'] = FALSE;
+			$ret_array['data'] = $this->xmlrpc->display_error();
+		}
+		
+		return $ret_array;
+	}
+	// --------------------------------------------------------
+
+
+	/**
+	 * clear_channel()
+	 * this function allows users to issue the CLEARNCHAN command on a given channel with
+	 * the passed given parameters.
+	 * 
+	 * @param string $clear_action 		- action to use when clearing the channel
+	 * @param string $clear_channel 	- #channel name to clear
+	 * @param string $clear_reason 		- reason given for the channel clear, (optional)
+	 */
 	public function clear_channel($clear_action, $clear_channel, $clear_reason = FALSE)
 	{
 		$ret_array = array();

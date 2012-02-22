@@ -163,13 +163,53 @@ class Operserv extends CI_Controller {
 		// page data
 		$page_data = array();
 
-		$callback = $this->operserv_model->module_list();
+		// validation rules for loading a module
+		if ($this->input->post('load_module'))
+			$this->form_validation->set_rules('module_name', 'Module Name', 'required');
 
+		// validation rules for unloading a module
+		if ($this->input->post('unload_module'))
+			$this->form_validation->set_rules('module_name', 'Module Name', 'required');
+
+		// did the user submit?
+		if ($this->form_validation->run())
+		{
+			// are we loading a module?
+			if ($this->input->post('load_module'))
+				$callback = $this->operserv_model->module_load($this->input->post('module_name'));
+
+			// are we unloading a module?
+			if ($this->input->post('unload_module'))
+				$callback = $this->operserv_model->module_unload($this->input->post('module_name'));
+
+			// auth check
+			if (!$callback['response'] && $callback['data'] == $this->lang->line('error_invalid_authcookie'))
+				redirect('main/logout');
+
+			// atheme response
+			$page_data['success'] =  $page_data['info'] = $callback['response'];
+			$page_data['msg'] = $callback['data'];
+		}
+
+		// get modules list
+		$callback = $this->operserv_model->module_list();
+		
 		// auth check
 		if (!$callback['response'] && $callback['data'] == $this->lang->line('error_invalid_authcookie'))
 			redirect('main/logout');
 
-		$page_data['info'] = $this->fout->as_array($callback['data']);
+		// clean modules list for options list
+		$modules = $this->fout->as_array($callback['data']);
+
+		array_shift($modules);
+		array_pop($modules);
+
+		$page_data['modules'] = array();
+		foreach ($modules as $mod)
+		{
+			preg_match('/: (.*) \[.*\]/m', $mod, $parts);
+			array_push($page_data['modules'], $parts[1]);
+		}
 
 		// load the main view
 		$this->load->view('operserv/modules', $page_data);
