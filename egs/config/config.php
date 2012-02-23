@@ -45,6 +45,13 @@ $config['atheme_hostserv'] = "HOSTSERV";
 $config['atheme_operserv'] = "OPERSERV";
 
 /**
+ * SOPER Module?
+ * Set to TRUE or FALSE depending on if you run this Atheme
+ * module or not.
+ */
+$config['atheme_soper']	= TRUE;
+
+/**
  * Web Register?
  * Allow users to register via the web?
  */
@@ -68,7 +75,7 @@ $config['index_page'] = 'index.php';
  * This NEEDS to be set to a nice long random string this key will be used to secure
  * session and cookies
  */
-$config['encryption_key'] = 'asd90f7as980df7as980df7980ads7f09ads78f980ads79';
+$config['encryption_key'] = '';
 
 /**
  * Session Config Options
