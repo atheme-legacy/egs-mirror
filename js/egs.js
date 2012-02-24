@@ -104,6 +104,9 @@ $('document').ready(function() {
 	 */ 
 	$('input[type="text"]').placeholderFunction('input-focused');
 	
+	/*!
+	 * show or hide the flags thing
+	 */
 	$('#flagstable').hide();
 	
 	$('#flagstoggle').click(function(){

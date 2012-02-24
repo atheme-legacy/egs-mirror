@@ -81,7 +81,7 @@ a:hover { color: #000000; }
 }
 
 #application {
-  background: url(/images/bg.png) repeat-x #e1e1e1;
+  background: url(images/bg.png) repeat-x #e1e1e1;
   border-radius: 5px;
   box-shadow: 0px 1px 5px 0px #111;
   min-height: 250px;
@@ -103,7 +103,7 @@ header {
 }
 
 #logo {
-  background: url(/images/logo.png) no-repeat center;
+  background: url(images/logo.png) no-repeat center;
   float: left;
   height: 95px;
   text-indent: -9999px;
@@ -183,17 +183,17 @@ nav#primary .icon {
   width: 25px;
 }
 
-.icon.dashboard { background-image: url(/images/dashboard.png) }
-.icon.chart { background-image: url(/images/chart.png) }
-.icon.tables { background-image: url(/images/tables.png) }
-.icon.anchor { background-image: url(/images/anchor.png) }
-.icon.pencil { background-image: url(/images/pencil.png) }
-.icon.gallery { background-image: url(/images/gallery.png) }
-.icon.modal { background-image: url(/images/modal.png) }
-.icon.newspaper { background-image: url(/images/newspaper.png) }
+.icon.dashboard { background-image: url(images/dashboard.png) }
+.icon.chart { background-image: url(images/chart.png) }
+.icon.tables { background-image: url(images/tables.png) }
+.icon.anchor { background-image: url(images/anchor.png) }
+.icon.pencil { background-image: url(images/pencil.png) }
+.icon.gallery { background-image: url(images/gallery.png) }
+.icon.modal { background-image: url(images/modal.png) }
+.icon.newspaper { background-image: url(images/newspaper.png) }
 
 .badge {
-  background: url(/images/badge.png) no-repeat;
+  background: url(images/badge.png) no-repeat;
   color: #fff;
   display: block;
   font-family: "Tahoma";
@@ -224,7 +224,7 @@ nav#secondary ul li {
 }
 
 nav#secondary ul li a {
-  background: url(/images/tab_inactive.png) repeat-x #484848;
+  background: url(images/tab_inactive.png) repeat-x #484848;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   color: #f4f4f4;
@@ -263,7 +263,7 @@ nav#secondary ul li.current a {
 /* Search */
 
 #search {
-  background: url(/images/search.png) 6px 6px no-repeat #fff;
+  background: url(images/search.png) 6px 6px no-repeat #fff;
   border: 1px solid #c7c7c7;
   border-radius: 20px;
   box-shadow: 0 1px 0 #fff;
@@ -308,7 +308,7 @@ nav#secondary ul li.current a {
 }
 
 #livesearch ul li a:hover {
-  background: url(/images/search_bg.png) repeat-x;
+  background: url(images/search_bg.png) repeat-x;
   color: #fff;
 }
 
@@ -414,7 +414,7 @@ select {
 }
 
 .cmf-skinned-select {
-  background: url(/images/select.png) right no-repeat;
+  background: url(images/select.png) right no-repeat;
   border: 1px solid #c3c3c3;
   border-radius: 3px;
   box-shadow: 0 1px 2px #ccc;
@@ -469,7 +469,7 @@ select {
 }
 
 #notifications li:hover {
-  background: url(/images/notification_bg.png) repeat-x #156aa4;
+  background: url(images/notification_bg.png) repeat-x #156aa4;
   background-color: #166ba5;
   border-top: 1px solid #3a6584;
   color: #fff;
@@ -501,11 +501,11 @@ select {
   width: 16px;
 }
 
-#notifications .information { background-image: url(/images/information.png) }
-#notifications .warning { background-image: url(/images/exclamation.png) }
-#notifications .error { background-image: url(/images/error.png) }
-#notifications .success { background-image: url(/images/success.png) }
-#notifications .saved { background-image: url(/images/saved.png) }
+#notifications .information { background-image: url(images/information.png) }
+#notifications .warning { background-image: url(images/exclamation.png) }
+#notifications .error { background-image: url(images/error.png) }
+#notifications .success { background-image: url(images/success.png) }
+#notifications .saved { background-image: url(images/saved.png) }
 
 #notifications .tag {
   background: #c9c9c9;
@@ -731,7 +731,7 @@ a:focus { outline: none }
     width: 12px; 
     height: 12px; 
     margin: 0 0.75em 0 -0.25em; 
-    background: url(/images/gh-icons.png) 0 99px no-repeat;
+    background: url(images/gh-icons.png) 0 99px no-repeat;
 }
 
 .button.arrowup.icon:before { background-position: 0 0; }
