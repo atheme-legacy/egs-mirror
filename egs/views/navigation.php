@@ -69,7 +69,9 @@
 		<?php elseif (stristr(uri_string(), "operserv")) : ?>
 			<ul>
 				<li <?php print ((uri_string() === "operserv/akill") ? 'class="current"' : '') ?>><a href="<?php print site_url('operserv/akill'); ?>">AKill</a></li>
+			<?php if ($this->config->item('atheme_soper')) : ?>
 				<li <?php print ((uri_string() === "operserv/soper") ? 'class="current"' : '') ?>><a href="<?php print site_url('operserv/soper'); ?>">Soper</a></li>
+			<?php endif; ?>
 				<li <?php print ((uri_string() === "operserv/modules") ? 'class="current"' : '') ?>><a href="<?php print site_url('operserv/modules'); ?>">Modules</a></li>
 				<li <?php print ((uri_string() === "operserv/rehash") ? 'class="current"' : '') ?>><a href="<?php print site_url('operserv/rehash'); ?>">Rehash</a></li>
 			</ul>

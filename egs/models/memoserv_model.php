@@ -1,13 +1,15 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
-/**
- * EGs Web Panel (Web Services for Atheme)
- *
- * author: J. Newing (synmuffin)
- * email: jnewing [at] gmail [dot] com
- * version: 3.0
- *
- */
+/****************************************************************/
+/* EGs Web Panel (Web Services for Atheme)                      */
+/*                                                              */
+/* author: 	J. Newing (synmuffin)                               */
+/* web:		http://egs.ircmojo.org                              */
+/* email: 	jnewing [at] gmail [dot] com                        */
+/* irc: 	pool.ircmojo.org                                    */
+/* version: 3.1                                                 */
+/****************************************************************/
+
 
 /**
  * Memoserv Model

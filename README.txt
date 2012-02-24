@@ -6,10 +6,10 @@
 |______\_____|___/
 
 EGs Web Panel for Atheme IRC Services.
- * author: J. Newing (synmuffin)
- * email: jnewing@gmail.com
- * website: http://epicgeeks.net/
- * irc: pool.ircmojo.org (channel #egs)
+ o author:  J. Newing (synmuffin)
+ o email:   jnewing@gmail.com
+ o website: http://egs.ircmojo.org/
+ o irc:     pool.ircmojo.org (channel #egs)
 
 
 =====================================================================================
@@ -117,3 +117,14 @@ Copy and paste the following into an .htaccess file and place it in your root EG
 Done!
 
 That's it! You should be able to direct your browser to http://www.yoursite.com/services/ and login using your Atheme Nickserv account nickname and password. Remember for support etc... feel free to drop in on us at irc.epicgeeks.net channel #egs and we'll be happy to help!
+
+
+=====================================================================================
+=====================================================================================
+
+
+Notes
+=================
+Thanks to katsklaw for testing EGs, feedback and ideas, also for allowing me to develope EGs on 
+IRCMojo (pool.ircmojo.org) also.
+
