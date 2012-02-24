@@ -19,7 +19,7 @@
 			<?php if (!empty($info)) : ?>
 				<?php foreach ($info as $akill) : ?>
 				<tr>
-					<td><?php print $akill['id']; ?></td>
+					<td id="aid"><?php print $akill['id']; ?></td>
 					<td><?php print $akill['nick_host']; ?></td>
 					<td><?php print $akill['added_by']; ?></td>
 					<td><?php print $akill['expires']; ?></td>
@@ -46,7 +46,7 @@
 						<small>You can also seprate multipul ID's via a , (comma)</small>
 					</label>
 					<div>
-						<input type="text" name="akill_id" placeholder="AKill ID" class="required" />
+						<input type="text" name="akill_id" id="akill_id" placeholder="AKill ID" class="required" />
 						<br /><br />
 						<input type="submit" name="delakill" value="Delete" class="button primary danger" />
 					</div>

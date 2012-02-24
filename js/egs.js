@@ -123,6 +123,17 @@ $('document').ready(function() {
 	});
 
 	/*!
+	 * when the user clicks the AKill id input it into the akill val
+	 */
+	$('#aid').click(function() {
+		// get the aid
+		var aid = $(this).html();
+
+		// set the text box value
+		$('#akill_id').val(aid);
+	});
+
+	/*!
 	 * input select boxes
 	 */
 	$('select').select_skin();

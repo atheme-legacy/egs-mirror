@@ -523,6 +523,11 @@ select {
   -webkit-border-radius: 20px;
 }
 
+
+/* AKill Table */
+#aid { cursor: pointer; }
+
+
 /* Styles */
 
 h1, h2, h3, h4, h5, h6 {
