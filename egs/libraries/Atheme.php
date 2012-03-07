@@ -100,7 +100,8 @@ class Atheme {
 
 	/**
 	 * ison()
-	 * returns json TRUE or FALSE if user is on or not
+	 * returns json TRUE or FALSE if user is on or not, NOTE: not all versions of atheme have
+	 * this yet! don't use it unless your 100% sure yours does.
 	 *
 	 * @param string $nick 	- nickname of the user to check if he/she ison
 	 *
