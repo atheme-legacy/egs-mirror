@@ -87,12 +87,15 @@ class Hostserv extends CI_Controller {
 	{
 		$page_data = array();
 		
+		// set form validation rules
 		$this->form_validation->set_rules('hostname', 'Hostname', 'required');
 		
+		// did the user submit?
 		if ($this->form_validation->run())
 		{
 			$callback = $this->hostserv_model->host_request($this->input->post('hostname'));
 			
+			// validate the call
 			if (!$callback['response'] && $callback['data'] == $this->lang->line('error_invalid_authcookie'))
 				redirect('main/logout');
 				
@@ -101,6 +104,36 @@ class Hostserv extends CI_Controller {
 		}
 		
 		$this->load->view('hostserv/request', $page_data);
+	}
+	// --------------------------------------------------------
+
+
+	/**
+	 * Hostserv Take Page
+	 * This page allows users to take a network allows hostname offered by Hostserv
+	 *
+	 */
+	public function take()
+	{
+		$page_data = array();
+
+		// set form validation rules
+		$this->form_validation->set_rules('hostname', 'Hostname', 'required');
+
+		// did the user submit?
+		if ($this->form_validation->run())
+		{
+			$callback = $this->hostserv_model->host_take($this->input->post('hostname'));
+
+			// validate the call
+			if (!$callback['response'] && $callback['data'] == $this->lang->line('error_invalid_authcookie'))
+				redirect('main/logout');
+				
+			$page_data['success'] = $callback['response'];
+			$page_data['msg'] = $callback['data'];
+		}
+
+		$this->load->view('hostserv/take', $page_data);
 	}
 	// --------------------------------------------------------
 	

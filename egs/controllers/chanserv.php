@@ -226,6 +226,63 @@ class Chanserv extends CI_Controller {
 		$this->load->view('chanserv/flags', $page_data);
 	}
 	// --------------------------------------------------------
+
+
+	/**
+	 * Chanserv XOP Page
+	 * Page allows users to manage channel flags via the XOP system, this page will only
+	 * be display if $config['atheme_xop'] is set to TRUE.
+	 * 
+	 */
+	public function xop()
+	{
+		$page_data = array();
+
+		// setup form rules for xop list
+		if ($this->input->post('list_xop'))
+			$this->form_validation->set_rules('xop_channel', 'Channel', 'required');
+
+		// set form rules for xop management
+		if ($this->input->post('set_xop'))
+		{
+			$this->form_validation->set_rules('xop_channel', 'Channel', 'required');
+			$this->form_validation->set_rules('xop_nick', 'Nickname or Hostmask', 'required');
+		}
+
+		// did the user submit?
+		if ($this->form_validation->run())
+		{
+			// are we getting a list?
+			if ($this->input->post('list_xop'))
+			{
+				$callback = $this->chanserv_model->channel_xop($this->input->post('xop_type'), $this->input->post('xop_channel'), "LIST");
+
+				// check for valid call
+				if (!$callback['response'] && $callback['data'] == $this->lang->line('error_invalid_authcookie'))
+					redirect('main/logout');
+				
+				$page_data['response'] = $callback['data'];
+			}
+
+			// are we managing our XOP list
+			if ($this->input->post('set_xop'))
+			{
+				$callback = $this->chanserv_model->channel_xop($this->input->post('xop_type'), $this->input->post('xop_channel'), $this->input->post('xop_action'), $this->input->post('xop_nick'));
+
+				// check for valid call
+				if (!$callback['response'] && $callback['data'] == $this->lang->line('error_invalid_authcookie'))
+					redirect('main/logout');
+				
+				// atheme response
+	            $page_data['success'] = $callback['response'];
+				$page_data['msg'] = $callback['data'];
+			}
+		}
+
+
+		$this->load->view('chanserv/xop', $page_data);
+	}
+	// --------------------------------------------------------
 	
 	
 	/**

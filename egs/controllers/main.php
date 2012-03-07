@@ -198,6 +198,24 @@ class Main extends CI_Controller {
 		*/
 
 	}
+	// --------------------------------------------------------
+
+
+	public function ison($nickname = FALSE)
+	{
+		if (!$nickname)
+			return;
+
+		header('Cache-Control: no-cache, must-revalidate');
+		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+		header('Content-type: application/json');
+		
+		if ($this->atheme->isonline($nickname))
+			print json_encode(TRUE);
+		else
+			print json_encode(FALSE);
+	}
+	// --------------------------------------------------------
 	
 	
 	//========================================================

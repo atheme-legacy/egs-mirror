@@ -45,6 +45,13 @@ $config['atheme_hostserv'] = "HOSTSERV";
 $config['atheme_operserv'] = "OPERSERV";
 
 /**
+ * XOP System
+ * If you wish to enable the XOP system within EGs
+ * Note: This will replace the flags page if enabled.
+ */
+$config['atheme_xop']	= FALSE;
+
+/**
  * SOPER Module?
  * Set to TRUE or FALSE depending on if you run this Atheme
  * module or not.

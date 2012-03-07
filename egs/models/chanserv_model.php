@@ -373,7 +373,55 @@ class Chanserv_model extends CI_Model {
 		}
 		
 		return $ret_array;
-        
+    }
+    // --------------------------------------------------------
+
+
+    /**
+     * channel_xop()
+     * function allows users to manage their XOP lists.
+     * 
+     * @param string $xop_type 		- type of XOP (VOP|HOP|AOP|SOP)
+     * @param string $xop_channel	- channel we want to manage
+     * @param string $xop_action	- action we want to preform (ADD|DELETE|LIST)
+     * @param string $xop_nickhost	- xop nickname or host we want to manage
+     * 
+     * @return - xmlrcp server response
+     */
+    public function channel_xop($xop_type, $xop_channel, $xop_action, $xop_nickhost = FALSE)
+    {
+    	$ret_array = array();
+    	
+    	if (!$xop_nickhost)
+    		$cmd = $this->atheme->atheme_command($this->session->userdata('nick'), $this->session->userdata('auth'), $this->config->item('atheme_chanserv'),
+	    		array(
+	    			$xop_type,
+	    			$xop_channel,
+	    			$xop_action
+	    		)
+	    	);
+    	else
+    		$cmd = $this->atheme->atheme_command($this->session->userdata('nick'), $this->session->userdata('auth'), $this->config->item('atheme_chanserv'),
+	    		array(
+	    			$xop_type,
+	    			$xop_channel,
+	    			$xop_action,
+	    			$xop_nickhost
+	    		)
+	    	);
+
+    	if ($cmd)
+		{
+			$ret_array['response'] = TRUE;
+			$ret_array['data'] = $this->xmlrpc->display_response();
+		}
+		else
+		{
+			$ret_array['response'] = FALSE;
+			$ret_array['data'] = $this->xmlrpc->display_error();
+		}
+		
+		return $ret_array;
     }
     // --------------------------------------------------------
     

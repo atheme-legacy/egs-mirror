@@ -97,6 +97,23 @@ class Atheme {
 	}
 	// --------------------------------------------------------
 	
+
+	/**
+	 * ison()
+	 * returns json TRUE or FALSE if user is on or not
+	 *
+	 * @param string $nick 	- nickname of the user to check if he/she ison
+	 *
+	 */
+	public function isonline($nick)
+	{
+		$this->ci->xmlrpc->method("atheme.ison");
+		$request = array($nick);
+		$this->ci->xmlrpc->request($request);
+
+		return $this->ci->xmlrpc->send_request();
+	}
+
 	
 	/**
 	 * atheme_command()

@@ -108,6 +108,41 @@ class Hostserv_model extends CI_Model {
 		return $ret_array;
 	}
 	// --------------------------------------------------------
+
+
+	/**
+	 * host_take()
+	 * function allows a user to take an offerd hostname on the network.
+	 *
+	 * @param string $hostname 	- the offered hostname a user wishes to take
+	 *
+	 * @return - xmlrpc server response
+	 */
+	public function host_take($hostname)
+	{
+		$ret_array = array();
+
+		$cmd = $this->atheme->atheme_command($this->session->userdata('nick'), $this->session->userdata('auth'), $this->config->item('atheme_hostserv'),
+			array(
+				"TAKE",
+				$hostname
+			)
+		);
+
+		if ($cmd)
+		{
+			$ret_array['response'] = TRUE;
+			$ret_array['data'] = $this->xmlrpc->display_response();
+		}
+		else
+		{
+			$ret_array['response'] = FALSE;
+			$ret_array['data'] = $this->xmlrpc->display_error();
+		}
+		
+		return $ret_array;
+	}
+	// --------------------------------------------------------
 	
 	
 	//========================================================

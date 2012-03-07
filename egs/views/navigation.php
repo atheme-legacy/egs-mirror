@@ -16,23 +16,23 @@
 				<li <?php print ((stristr(uri_string(), "main")) ? 'class="current"' : '') ?>><a href="/"><span class="icon dashboard"></span>Dashboard</a></li>
                 
                 <?php if ($this->config->item('atheme_nickserv')) : ?>
-                	<li <?php print ((stristr(uri_string(), "nickserv")) ? 'class="current"' : '') ?>><a href="<?php print site_url('nickserv'); ?>"><span class="icon tables"></span>NickServ</a></li>
+                	<li <?php print ((stristr(uri_string(), "nickserv")) ? 'class="current"' : '') ?>><a href="<?php print site_url('nickserv'); ?>"><span class="icon tables"></span><?php print ucfirst(strtolower($this->config->item('atheme_nickserv'))); ?></a></li>
                 <?php endif; ?>
                 
                 <?php if ($this->config->item('atheme_chanserv')) : ?>
-                	<li <?php print ((stristr(uri_string(), "chanserv")) ? 'class="current"' : '') ?>><a href="<?php print site_url('chanserv/info'); ?>"><span class="icon modal"></span>ChanServ</a></li>
+                	<li <?php print ((stristr(uri_string(), "chanserv")) ? 'class="current"' : '') ?>><a href="<?php print site_url('chanserv/info'); ?>"><span class="icon modal"></span><?php print ucfirst(strtolower($this->config->item('atheme_chanserv'))); ?></a></li>
                 <?php endif; ?>
                 
                 <?php if ($this->config->item('atheme_memoserv')) : ?>
-                	<li <?php print ((stristr(uri_string(), "memoserv")) ? 'class="current"' : '') ?>><a href="<?php print site_url('memoserv'); ?>"><span class="icon pencil"></span><?php print (($new_memos) ? '<span class="badge"> ' . $new_memos . '</span>' : ''); ?>MemoServ</a></li>
+                	<li <?php print ((stristr(uri_string(), "memoserv")) ? 'class="current"' : '') ?>><a href="<?php print site_url('memoserv'); ?>"><span class="icon pencil"></span><?php print (($new_memos) ? '<span class="badge"> ' . $new_memos . '</span>' : ''); ?><?php print ucfirst(strtolower($this->config->item('atheme_memoserv'))); ?></a></li>
                	<?php endif; ?>
                	
                	<?php if ($this->config->item('atheme_hostserv')) : ?>
-                	<li <?php print ((stristr(uri_string(), "hostserv")) ? 'class="current"' : '') ?>><a href="<?php print site_url('hostserv/offerlist'); ?>"><span class="icon newspaper"></span>HostServ</a></li>
+                	<li <?php print ((stristr(uri_string(), "hostserv")) ? 'class="current"' : '') ?>><a href="<?php print site_url('hostserv/offerlist'); ?>"><span class="icon newspaper"></span><?php print ucfirst(strtolower($this->config->item('atheme_hostserv'))); ?></a></li>
                 <?php endif; ?>
 
                 <?php if ($this->config->item('atheme_operserv') && $this->operserv_model->check_access()) : ?>
-                	<li <?php print ((stristr(uri_string(), "operserv")) ? 'class="current"' : '') ?>><a href="<?php print site_url('operserv'); ?>"><span class="icon modal"></span>Operserv</a></li>
+                	<li <?php print ((stristr(uri_string(), "operserv")) ? 'class="current"' : '') ?>><a href="<?php print site_url('operserv'); ?>"><span class="icon modal"></span><?php print ucfirst(strtolower($this->config->item('atheme_operserv'))); ?></a></li>
                 <?php endif; ?>
 			</ul>
 		</nav>
@@ -52,7 +52,11 @@
 				<li <?php print ((uri_string() === "chanserv/kick") ? 'class="current"' : '') ?>><a href="<?php print site_url('chanserv/kick'); ?>"><?php _t('cs_kick'); ?></a></li>
 				<li <?php print ((uri_string() === "chanserv/ban") ? 'class="current"' : '') ?>><a href="<?php print site_url('chanserv/ban'); ?>"><?php _t('cs_ban'); ?></a></li>
 				<li <?php print ((uri_string() === "chanserv/akick") ? 'class="current"' : '') ?>><a href="<?php print site_url('chanserv/akick'); ?>"><?php _t('cs_akick'); ?></a></li>
+			<?php if ($this->config->item('atheme_xop')) : ?>
+				<li <?php print ((uri_string() === "chanserv/xop") ? 'class="current"' : '') ?>><a href="<?php print site_url('chanserv/xop'); ?>">XOP</a></li>
+			<?php else: ?>
 				<li <?php print ((uri_string() === "chanserv/flags") ? 'class="current"' : '') ?>><a href="<?php print site_url('chanserv/flags'); ?>"><?php _t('cs_flags'); ?></a></li>
+			<?php endif; ?>
 			</ul>
 		<?php elseif (stristr(uri_string(), "memoserv")) : ?>
 			<ul>
@@ -65,6 +69,7 @@
 			<ul>
 				<li <?php print ((uri_string() === "hostserv/offerlist") ? 'class="current"' : '') ?>><a href="<?php print site_url('hostserv/offerlist'); ?>"><?php _t('hs_offer'); ?></a></li>
 				<li <?php print ((uri_string() === "hostserv/request") ? 'class="current"' : '') ?>><a href="<?php print site_url('hostserv/request'); ?>"><?php _t('hs_request'); ?></a></li>
+				<li <?php print ((uri_string() === "hostserv/take") ? 'class="current"' : '') ?>><a href="<?php print site_url('hostserv/take'); ?>">Take</a></li>
 			</ul>
 		<?php elseif (stristr(uri_string(), "operserv")) : ?>
 			<ul>

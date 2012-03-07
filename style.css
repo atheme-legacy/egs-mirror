@@ -54,7 +54,7 @@ html {
 }
 
 body {
-  background: url(images/background.jpg) no-repeat 0em 0em;
+  background: url(images/background.png) repeat 0em 0em;
   font-family: 'Tahoma', sans-serif;
   font-size: 12px;
   height: 100%;
@@ -63,8 +63,7 @@ body {
 a { color: #1E1E1E; text-decoration: none; }
 a:hover { color: #000000; }
 
-#copyright a { color: #FFFCA2; text-decoration: none; }
-#copyright a:hover { text-decoration: underline; }
+#copyright a { color: #3c3c3c; font-weight: bold; text-decoration: none; }
 
 /* Containers */
 #container {
@@ -130,7 +129,7 @@ header {
 
 #userinfo .intro {
   display: inline;
-  color: #bababa;
+  color: #3c3c3c;
   float: right;
   line-height: 18px;
   margin-top: 2px;
@@ -139,6 +138,7 @@ header {
 
 #userinfo .intro a {
   /* color: #bababa; */
+  font-weight: bold;
 }
 
 /* Primary navigation */
@@ -253,11 +253,11 @@ nav#secondary ul li.current a {
 /* Footer */
 
 #copyright {
-  color: #fff;
+  color: #3a3a3a;
   font-size: 11px;
   line-height: 50px;
   text-align: right;
-  text-shadow: 0 1px 0 #000;
+  text-shadow: 0 1px 0 #fff;
 }
 
 /* Search */
