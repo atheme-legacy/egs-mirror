@@ -79,6 +79,7 @@
 			<?php endif; ?>
 				<li <?php print ((uri_string() === "operserv/modules") ? 'class="current"' : '') ?>><a href="<?php print site_url('operserv/modules'); ?>">Modules</a></li>
 				<li <?php print ((uri_string() === "operserv/rehash") ? 'class="current"' : '') ?>><a href="<?php print site_url('operserv/rehash'); ?>">Rehash</a></li>
+				<li <?php print ((uri_string() === "operserv/hash") ? 'class="current"' : '') ?>><a href="<?php print site_url('operserv/hash'); ?>">Password Hash</a></li>
 			</ul>
 		<?php endif; ?>
 		</nav>

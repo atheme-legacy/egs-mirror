@@ -296,6 +296,35 @@ class Operserv extends CI_Controller {
 	}
 	// --------------------------------------------------------
 
+
+	/**
+	 * Hash Page
+	 * This page allows users to generate password hashes for user with Atheme
+	 */
+	public function hash()
+	{
+		$page_data = array();
+
+		// form validation rules
+		$this->form_validation->set_rules('password', 'Password', 'required');
+
+		// did the user submit?
+		if ($this->form_validation->run())
+		{
+			// hash the password using MD5
+			if ($this->input->post('enc_type') === "MD5")
+				$page_data['hash'] = '$rawmd5$' . md5($this->input->post('password'));
+
+			if ($this->input->post('enc_type') === "SHA1")
+				$page_data['hash'] = '$rawsha1$' . sha1($this->input->post('password'));
+
+		}
+
+		
+		$this->load->view('operserv/hash', $page_data);
+	}
+	// --------------------------------------------------------
+
 	
 	//========================================================
 	// CALLBACK FUNCTIONS
