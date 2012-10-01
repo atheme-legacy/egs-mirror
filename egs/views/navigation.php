@@ -13,7 +13,7 @@
 		<!-- primary navigation -->
 		<nav id="primary">
 			<ul>
-				<li <?php print ((stristr(uri_string(), "main")) ? 'class="current"' : '') ?>><a href="/"><span class="icon dashboard"></span>Dashboard</a></li>
+			<li <?php print ((stristr(uri_string(), "main")) ? 'class="current"' : '') ?>><a href="<?php print site_url('main/home'); ?>"><span class="icon dashboard"></span>Dashboard</a></li>
                 
                 <?php if ($this->config->item('atheme_nickserv')) : ?>
                 	<li <?php print ((stristr(uri_string(), "nickserv")) ? 'class="current"' : '') ?>><a href="<?php print site_url('nickserv'); ?>"><span class="icon tables"></span><?php print ucfirst(strtolower($this->config->item('atheme_nickserv'))); ?></a></li>
